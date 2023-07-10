@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('Get','http://10.79.108.194/Ajax/day1/time.php');
+    xhr.send();
+    xhr.addEventListener('load',function () {
+        if(this.readyState !== 4){
+            return;
+        }
+        console.log(this.readyState);
+        console.log(this.responseText);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('Get', 'http://10.79.108.194/Ajax/day1/time.php');
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (this.readyState !== 4) {
+            return;
+        }
+        // var response = xhr.send();
+        console.log(this.responseText);
+    }
+
+</script>
+</body>
+</html>
