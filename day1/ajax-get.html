@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list">
+  <li>嗯哼</li>
+</ul>
+
+<script>
+  var xhr = new XMLHttpRequest();
+
+  xhr.open('GET','http://11.234.64.128/Ajax/day1/user.php');
+
+  xhr.send();
+
+  xhr.addEventListener("readystatechange", function () {
+    //获取对象
+    var listObj=document.getElementById('list');
+    if(this.readyState !== 4){
+      return;
+    }
+    var data = JSON.parse(this.responseText);
+
+    for(var i=0;i<data.length;i++){
+      var listElement = document.createElement('li');
+      listElement.append(listObj);
+      listElement.id = data[i].id;
+      listElement.innerHTML = data[i].name;
+    }
+
+
+  });
+</script>
+
+</body>
+</html>

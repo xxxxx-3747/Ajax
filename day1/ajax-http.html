@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST','http://10.79.108.194/Ajax/day1/add.php');
+
+    //设置响应头
+    xhr.setRequestHeader('foo','bar');
+
+    xhr.setRequestHeader('Content_Type','application/x-www-form-urlencoded');
+
+    xhr.send('key1=value1&key2=value2');
+
+</script>
+
+</body>
+</html>
