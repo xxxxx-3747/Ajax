@@ -6,34 +6,58 @@
 </head>
 <body>
 <ul id="list">
-  <li>嗯哼</li>
+    <li>haha</li>
 </ul>
 
 <script>
-  var xhr = new XMLHttpRequest();
 
-  xhr.open('GET','http://11.234.64.128/Ajax/day1/user.php');
-
-  xhr.send();
-
-  xhr.addEventListener("readystatechange", function () {
     //获取对象
-    var listObj=document.getElementById('list');
-    if(this.readyState !== 4){
-      return;
-    }
-    var data = JSON.parse(this.responseText);
+    var listObj = document.getElementById('list');
+    // var list1=document.createElement('li');
+    // list1.innerHTML='ccc';
+    // listObj.insertAdjacentElement("beforeend", list1);
+    // list1.appendChild(listObj);
 
-    for(var i=0;i<data.length;i++){
-      var listElement = document.createElement('li');
-      listElement.append(listObj);
-      listElement.id = data[i].id;
-      listElement.innerHTML = data[i].name;
-    }
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'http://localhost/Ajax/day1/user.php');
+
+    xhr.send();
+
+    xhr.addEventListener("readystatechange", function () {
+
+        if (this.readyState !== 4) return;
+
+        var data = JSON.parse(this.responseText);
+
+        // console.log(data);
+        // console.log(data.length);
+
+        for (var i = 0; i < data.length; i++) {
+            var listElement = document.createElement('li');
+            listElement.innerHTML = data[i].name;
+            listElement.id = data[i].id;
+            listObj.appendChild(listElement);
+
+            //注册点击事件
+            listElement.addEventListener("click",function () {
+               var xhr1 = new XMLHttpRequest();
+               xhr1.open('GET', 'http://localhost/Ajax/day1/user.php?id='+this.id);
+               xhr1.send();
+               xhr1.addEventListener('readystatechange',function () {
+                   if (this.readyState !== 4) return;
+                   var obj = JSON.parse(this.responseText);
+                   alert(obj.age);
+               });
+            });
 
 
-  });
+        }
+
+
+    });
 </script>
+
 
 </body>
 </html>

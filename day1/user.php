@@ -2,6 +2,7 @@
 
 //设置head
 header('Content_type: application/json');
+header("Access-Control-Allow-Origin: *");
 
 
 $data = array(
@@ -35,7 +36,9 @@ if(empty($_GET['id'])){
 
     //没有获取到具体的id,打印全部的数据
     $json = json_encode($data);
-    var_dump($json);
+    //var_dump($json);
+    echo $json;
+    //print_r($json);
 }else{
     foreach ($data as $key) {
         if($key['id'] != $_GET['id']){
@@ -43,6 +46,8 @@ if(empty($_GET['id'])){
         }
         $json = json_encode($key);
         echo $json;
+        //var_dump($json);
+        //print_r($json);
     }
 
 }
