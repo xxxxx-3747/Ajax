@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #555;
+            opacity: .5;
+            text-align: center;
+            line-height: 300px;
+        }
+
+        #loading::after {
+            content: '加载中...';
+            color : #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="loading"></div>
+<table>
+    <tr>
+        <td>用户名：</td>
+        <td><input type="text" name="username" id="username"></td>
+    </tr>
+    <tr>
+        <td>密码：</td>
+        <td><input type="text" name="password" id="password"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button type="submit" id="btn">提交</button>
+        </td>
+    </tr>
+</table>
+
+<script>
+    //获取需要的对象
+    var loading=document.getElementById('loading');
+    var usernametxt=document.getElementById('username');
+    var passwordtxt=document.getElementById('password');
+    var btnObj=document.getElementById('btn');
+
+    btnObj.addEventListener('click',function () {
+        loading.style.display='block';
+        var username = usernametxt.value;
+        var password = passwordtxt.value;
+
+        //通过XHR发送一个post请求
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST','http://localhost/Ajax/day1/login.php');
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        xhr.send(`username=${username}&password=${password}`);
+        //loading.style.display='none';
+        xhr.addEventListener('readystatechange',function () {
+            if(this.readyState !== 4)
+                return;
+            console.log(this.responseText);
+            loading.style.display='none';
+
+        })
+    })
+
+
+
+</script>
+
+</body>
+</html>
