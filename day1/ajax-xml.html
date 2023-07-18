@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET','http://localhost/Ajax/day1/xml.php');
+    xhr.send();
+    xhr.addEventListener('readystatechange',function () {
+       if(this.readyState !== 4){
+           return;
+       }
+       console.log(this);
+       console.log(this.responseXML.documentElement.children[1].innerHTML);
+       console.log(this.responseXML.documentElement.getElementsByTagName('name')[0].innerHTML);
+    });
+</script>
+
+</body>
+</html>
