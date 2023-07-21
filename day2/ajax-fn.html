@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function ajax(method, url, params) {
+        method = method.toUpperCase();
+
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+
+        params = params || null;
+
+        xhr.send(params);
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState !== 4) {
+                return;
+            }
+            console.log(this.responseText);
+        })
+    }
+
+    ajax('get', 'http://localhost/Ajax/day2/time.php');
+
+</script>
+
+</body>
+</html>

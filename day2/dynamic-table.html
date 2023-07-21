@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<table id="demo"></table>
+
+<script id="tmpl" type="template-web.js">
+    {{each values}}
+    <tr>
+        <td>{{$value.author}}</td>
+        <td>{{$value.content}}</td>
+        <td>{{$value.email}}</td>
+<!--        <td>author</td>-->
+<!--        <td>content</td>-->
+<!--        <td>email</td>-->
+    </tr>
+    {{/each}}
+</script>
+
+<script src="template-web.js"></script>
+
+<script>
+
+
+
+    //import {template} from "./template-web";
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost/Ajax/day2/test.php');
+    xhr.send();
+    xhr.addEventListener('readystatechange', function () {
+        if (this.readyState !== 4) {
+            return;
+        }
+        var content = JSON.parse(this.responseText);
+        //console.log(content);
+        var context = {values: content.data};
+
+        var html = template('tmpl', context);
+
+        document.getElementById('demo').innerHTML=html;
+    });
+
+</script>
+</body>
+</html>
