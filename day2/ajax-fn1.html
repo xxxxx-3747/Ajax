@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function ajax(method, url, params,done) {
+        //转化为大写
+        method = method.toUpperCase();
+
+        var xhr = new XMLHttpRequest();
+
+        //判断传入的参数如果是对象
+        if (typeof params == 'object') {
+            //console.log('xxxx');
+            var arr = [];
+            for (var key in params) {
+                var value1 = params[key];
+                arr.push(key + '=' + value1);
+            }
+            params = arr.join('&');
+        }
+
+        if (method === 'GET') {
+            url += '?' + params;
+        }
+        xhr.open(method, url);
+
+        var value = null;
+        if (method === 'POST') {
+            value = params;
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        }
+        xhr.send(value);
+
+        xhr.addEventListener('readystatechange', function () {
+            if (this.readyState !== 4) {
+                return;
+            }
+            // console.log(this.responseText);
+            done(this.responseText);
+        })
+    }
+
+
+    //调用者
+    function onDo(reslut) {
+        console.log('=============');
+        console.log(reslut);
+        console.log('=============');
+
+    }
+
+    // ajax('get', 'http://localhost/Ajax/day2/time.php');
+    // ajax('get', 'http://localhost/Ajax/day2/test.php');
+    // ajax('post', 'http://localhost/Ajax/day2/add.php', 'key1=value1&key2=value2');
+    // ajax('post', 'http://localhost/Ajax/day2/add.php', {key1: 'value1', key2: 'value2'});
+    ajax('post', 'http://localhost/Ajax/day2/add.php', {key1: 'value1', key2: 'value2'},onDo);
+
+
+</script>
+
+</body>
+</html>
