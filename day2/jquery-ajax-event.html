@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">请求</button>
+<script src="jquery.js"></script>
+<script>
+    $(document).ajaxStart(function () {
+        console.log('开始请求');
+    });
+    $(document).ajaxStop(function () {
+        console.log('请求结束');
+    });
+    $('#btn').on('click',function () {
+        $.get('http://192.168.1.41/ajax/day2/time.php');
+    });
+    // $.ajaxComplete(function () {
+    //     console.log('请求结束');
+    // });
+</script>
+</body>
+</html>

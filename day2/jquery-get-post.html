@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="jquery.js"></script>
+<script>
+    $.get('http://192.168.1.41/ajax/day2/json.php',{id:1},function (res) {
+        console.log(res);
+    });
+    $.post('http://192.168.1.41/ajax/day2/json.php',{id:1},function (res) {
+        console.log(res);
+    });
+    $.getJSON('http://192.168.1.41/ajax/day2/json.php',{id:2},function (res) {
+        alert(res);
+    })
+</script>
+
+</body>
+</html>

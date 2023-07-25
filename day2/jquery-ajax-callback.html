@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="jquery.js"></script>
+
+<script>
+    //原生ajax操作
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open();
+    // xhr.send();
+    // xhr.addEventListener('readystatechange',function () {
+    //     if(this.readyState != 4){
+    //         return ;
+    //     }
+    //     console.log(this.responseText);
+    // })
+
+    $.ajax({
+        url:'http://192.168.1.41/ajax/day2/time.php',
+        type:'post',
+        beforeSend:function (xhr) {
+            console.log('beforeSend',xhr);
+        },
+        success:function (res) {
+            console.log(res);
+        },
+        error:function (xhr) {
+            console.log('error',xhr)
+        },
+        complete:function (xhr) {
+            console.log('complete',xhr);
+        }
+    });
+
+</script>
+
+</body>
+</html>
